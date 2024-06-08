@@ -11,6 +11,9 @@ const scene = new THREE.Scene();
 
 // initialize texture loader
 const textureLoader = new THREE.TextureLoader();
+const cubeTextureLoader = new THREE.CubeTextureLoader();
+cubeTextureLoader.setPath("/textures/cubeMap/");
+
 
 // Load textures
 const sunTexture = textureLoader.load("/textures/2k_sun.jpg");
@@ -19,6 +22,18 @@ const marsTexture = textureLoader.load("/textures/2k_mars.jpg");
 const venusTexture = textureLoader.load("/textures/2k_venus_surface.jpg");
 const mercuryTexture = textureLoader.load("/textures/2k_mercury.jpg");
 const moonTexture = textureLoader.load("/textures/2k_moon.jpg");
+
+
+// Load background texture
+const backgroundCubeMap = cubeTextureLoader.load([
+  "px.png",
+  "nx.png",
+  "py.png",
+  "ny.png",
+  "pz.png",
+  "nz.png",
+]);
+scene.background = backgroundCubeMap;
 
 // initialize materials
 const earthMaterial = new THREE.MeshStandardMaterial({ map: earthTexture });
@@ -125,8 +140,12 @@ const planetMeshes = Planets.map((planet) => {
 });
 
 // initialize the light
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
 scene.add(ambientLight);
+
+const pointLight = new THREE.PointLight(0xffffff, 2);
+pointLight.position.set(0, 0, 0);
+scene.add(pointLight);
 
 // initialize the camera
 const camera = new THREE.PerspectiveCamera(
