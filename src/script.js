@@ -9,11 +9,27 @@ const pane = new Pane();
 // initialize the scene
 const scene = new THREE.Scene();
 
-// add stuff here
+// initialize texture loader
+const textureLoader = new THREE.TextureLoader();
+
+// Load textures
+const sunTexture = textureLoader.load("/textures/2k_sun.jpg");
+const earthTexture = textureLoader.load("/textures/2k_earth_daymap.jpg");
+const marsTexture = textureLoader.load("/textures/2k_mars.jpg");
+const venusTexture = textureLoader.load("/textures/2k_venus_surface.jpg");
+const mercuryTexture = textureLoader.load("/textures/2k_mercury.jpg");
+
+// initialize materials
+const earthMaterial = new THREE.MeshStandardMaterial({ map: earthTexture });
+const marsMaterial = new THREE.MeshStandardMaterial({ map: marsTexture });
+const venusMaterial = new THREE.MeshStandardMaterial({ map: venusTexture });
+const mercuryMaterial = new THREE.MeshStandardMaterial({ map: mercuryTexture });
+
+// initialize geometry
 const sphereGeometry = new THREE.SphereGeometry(1, 32, 32);
 
 const SunMaterial = new THREE.MeshBasicMaterial({ 
-  color: 0xfff700, 
+  map: sunTexture, 
 });
 
 const Sun = new THREE.Mesh(sphereGeometry, SunMaterial);
