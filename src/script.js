@@ -9,7 +9,32 @@ const pane = new Pane();
 const scene = new THREE.Scene();
 
 // add stuff here
+const sphereGeometry = new THREE.SphereGeometry(1, 32, 32);
 
+const SunMaterial = new THREE.MeshBasicMaterial({ 
+  color: 0xfff700, 
+});
+
+const Sun = new THREE.Mesh(sphereGeometry, SunMaterial);
+Sun.scale.setScalar(5);
+scene.add(Sun);
+
+const EarthMaterial = new THREE.MeshBasicMaterial({
+  color: 'blue',
+});
+
+const Earth = new THREE.Mesh(sphereGeometry, EarthMaterial);
+Earth.position.x = 10;
+scene.add(Earth);
+
+const MoonMaterial = new THREE.MeshBasicMaterial({
+  color: 'grey',
+});
+
+const Moon = new THREE.Mesh(sphereGeometry, MoonMaterial);
+Moon.position.x = 2;
+Moon.scale.setScalar(0.3);
+Earth.add(Moon);
 // initialize the camera
 const camera = new THREE.PerspectiveCamera(
   35,
