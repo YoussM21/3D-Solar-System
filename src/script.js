@@ -159,6 +159,20 @@ window.addEventListener("resize", () => {
 
 // render loop
 const renderloop = () => {
+
+  planetMeshes.forEach((planet, index) => {
+    planet.rotation.y += Planets[index].speed;
+    planet.position.x = Math.sin(planet.rotation.y) * Planets[index].distance;
+    planet.position.z = Math.cos(planet.rotation.y) * Planets[index].distance;
+
+    planet.children.forEach((moon, moonIndex) => {
+      moon.rotation.y += Planets[index].moons[moonIndex].speed;
+      moon.position.x = Math.sin(moon.rotation.y) * Planets[index].moons[moonIndex].distance;
+      moon.position.z = Math.cos(moon.rotation.y) * Planets[index].moons[moonIndex].distance;
+    });
+
+  });
+
   controls.update();
   renderer.render(scene, camera);
   window.requestAnimationFrame(renderloop);
