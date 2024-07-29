@@ -1,3 +1,5 @@
+# My first ever ThreeJS Project
+
 # ThreeJS with Vite Starter Pack
 ### Prerequisites
 Before you start, make sure you have Node.js installed on your machine: (https://nodejs.org/en/download/)
